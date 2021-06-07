@@ -22,11 +22,13 @@
             <router-link to="/Order" class="nav-link" href="#">Order</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/" class="nav-link" href="#">Pricing</router-link>
+             <button class="btn float-end" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button">
+                <i class="bi bi-gear-fill" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"></i>
+            </button>
           </li>
         </ul>
         <span class="nav-item">
-           <router-link to="/Regis" class="nav-link" >Register</router-link>
+           <router-link to="/Register" class="nav-link" >Register</router-link>
         </span>
           <span class="nav-item">
            <router-link to="/Login" class="nav-link" >Login</router-link>
@@ -34,10 +36,15 @@
       </div>
     </div>
   </nav>
+  <Sidebar/>
 </template>
 
 <script>
+import Sidebar from "../components/Sidebar.vue"
 export default {
   name: "Nav",
+  components:{
+    Sidebar
+  }
 };
 </script>

@@ -1,6 +1,8 @@
 <template>
   <h1>Home</h1>
+  <div class="card-group">
   <Cards />
+  </div>
 </template>
 
 <script>
