@@ -36,11 +36,12 @@ export default {
     const data = reactive({
       email: "",
       password: "",
+      action: "login"
     });
     const router = useRouter();
 
     const submit = async () => {
-      await fetch("http://localhost/api/login", {
+      await fetch("http://localhost/api/user", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

@@ -26,7 +26,8 @@ export default {
     const data = reactive({
       name: '',
       email: '',
-      password: ''
+      password: '',
+      action: "register"
     });
     const router = useRouter();
 
