@@ -15,7 +15,7 @@ include 'connect_db.php';
 $requestMethod = $_SERVER["REQUEST_METHOD"];
 
 //ตรวจสอบหากใช้ Method GET
-if ($requestMethod == 'POST') {
+if ($requestMethod == 'GET') {
 	//ตรวจสอบการส่งค่า id
 	if (isset($_GET['id']) && !empty($_GET['id'])) {
 
@@ -48,19 +48,28 @@ $data = file_get_contents("php://input");
 $result = json_decode($data, true);
 
 //ตรวจสอบการเรียกใช้งานว่าเป็น Method POST หรือไม่
-if ($requestMethod == 'get') {
+if ($requestMethod == 'POST') {
 
 	if (!empty($result)) {
 
-		$user_id = $result['user_id'];
-		$restaurant_id = $result['restaurant_id'];
-		$menu_name = $result['menu_name'];
-		$menu_img = $result['menu_img'];
-		$menu_detail = $result['menu_detail'];
-		$menu_status = $result['menu_status'];
+		if ($result['action'] == "login") {
 
-		//คำสั่ง SQL สำหรับเพิ่มข้อมูลใน Database
-		$sql = "INSERT INTO user (id,user_id,restaurant_id,menu_name,menu_img,menu_detail,menu_status) VALUES (NULL,'$user_id','$restaurant_id','$menu_name','$menu_img','$menu_detail','$menu_status')";
+			$email = $_POST['email'];
+
+			//คำสั่ง SQL กรณี มีการส่งค่า id มาให้แสดงเฉพาะข้อมูลของ id นั้น
+			$sql = "SELECT * FROM user WHERE email = '$email' ";
+		} elseif ($result['action'] == "register") {
+
+			$user_id = $result['user_id'];
+			$restaurant_id = $result['restaurant_id'];
+			$menu_name = $result['menu_name'];
+			$menu_img = $result['menu_img'];
+			$menu_detail = $result['menu_detail'];
+			$menu_status = $result['menu_status'];
+
+			//คำสั่ง SQL สำหรับเพิ่มข้อมูลใน Database
+			$sql = "INSERT INTO user (id,user_id,restaurant_id,menu_name,menu_img,menu_detail,menu_status) VALUES (NULL,'$user_id','$restaurant_id','$menu_name','$menu_img','$menu_detail','$menu_status')";
+		}
 
 		$result = mysqli_query($link, $sql);
 

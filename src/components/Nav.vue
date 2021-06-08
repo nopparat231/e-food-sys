@@ -82,10 +82,10 @@ export default {
     const auth = computed(() => store.state.authenticated)
 
     const logout = async () => {
-      await fetch('http://localhost:8000/api/logout', {
+      await fetch('hhttp://localhost/e-food-sys/api/user.php"', {
+        mode: "no-cors",
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        credentials: 'include',
       });
     }
 

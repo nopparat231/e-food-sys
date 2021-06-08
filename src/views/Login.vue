@@ -36,15 +36,15 @@ export default {
     const data = reactive({
       email: "",
       password: "",
-      action: "login"
+      action: "login",
     });
     const router = useRouter();
 
     const submit = async () => {
-      await fetch("http://localhost/api/user", {
+      await fetch("http://localhost/e-food-sys/api/user.php", {
+        mode: "no-cors",
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        credentials: "include",
         body: JSON.stringify(data),
       });
 

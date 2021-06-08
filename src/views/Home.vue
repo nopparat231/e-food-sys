@@ -1,5 +1,6 @@
 <template>
   <h1>Home</h1>
+    {{ message }}
   <div class="card-group">
   <Cards />
   </div>
@@ -18,7 +19,8 @@ export default {
 
     onMounted(async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/user', {
+        const response = await fetch('http://localhost/e-food-sys/api/user.php', {
+          mode: "no-cors",
           headers: {'Content-Type': 'application/json'},
           credentials: 'include'
         });
